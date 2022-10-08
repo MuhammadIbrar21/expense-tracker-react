@@ -37,6 +37,12 @@ jobs:
         with:
             # Yarn command
             cmd: install
+      - name: Deploy to foo-bar.surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'expense-tracker-app-M-Ibrar.surge.sh'
+          project: '.'
+          token: ${{ secrets.surge_token }}
             
       - name: Creating build
         run: npm build
@@ -45,4 +51,4 @@ jobs:
         run: npm install -g surge
         
       - name: Deploy to Surge
-        run: surge expense-tracker-app-M-Ibrar.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./ expense-tracker-app-M-Ibrar.surge.sh --token ${{ secrets.SURGE_TOKEN }}
